@@ -1,0 +1,40 @@
+ 
+-----------------------------------------------------------------
+ 
+    We analyse the Leapfrog method applied to
+    the ODE u' = -au, u(0) = I. 
+
+    Assume that we can write u^n = A^n, where A 
+    is a constant. Substituting u^n = A^n into the  
+    numerical equation of the Leapfrog scheme, we 
+    get the second order polynomial equation 
+    A**2 + 2*a*dt - 1 = 0. 
+ 
+    Solve A**2 + 2*a*dt - 1 = 0 w.r.t. A: 
+ 
+         A1 =  -a*dt + (a**2*dt**2 + 1)**(1/2)
+         A2 =  -a*dt - (a**2*dt**2 + 1)**(1/2)
+ 
+         A11 =  -x + (x**2 + 1)**(1/2)
+         A22 =  -x - (x**2 + 1)**(1/2)
+ 
+    Taylor expansions: 
+ 
+         A1T =  1 - a*dt + a**2*dt**2/2 - a**4*dt**4/8 + O(a**5)
+         A2T =  -1 - a*dt - a**2*dt**2/2 + a**4*dt**4/8 + O(a**5)
+ 
+    Since there are two roots A, the numerical solution 
+    must be of the form u^n = C1*A1**n + C2*A2**n, where
+    C1 and C2 are real constants determined by the initial
+    conditions.
+
+    From the Taylor expansions of A1 and A2 we find
+    that abs(A2) > 1 for sufficiently small a*dt.
+    
+    Since abs(A2) > 1, abs(A2^n) will become very 
+    large after a large number of time steps n,
+    and the solution will therefore be unstable
+    as n increases.
+
+=================================================================
+
